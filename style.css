@@ -1,0 +1,34 @@
+
+table {
+    background-color: green;
+    color: white;
+}
+
+.col-md-6{
+    background-color: green;
+}
+
+.tabla{
+    background-color: black;
+    color: white;
+}
+#fila1 {
+    background-color: #cccccc;
+    color: #000000;
+}
+#fila2 {
+    background-color: #2271b3;
+    color: #ffffff;
+}
+
+
+.columnas {
+    background-color: blue;
+    color: white;
+}
+
+#prueba2 {
+    background-color: red;
+    color: white;
+}
+
