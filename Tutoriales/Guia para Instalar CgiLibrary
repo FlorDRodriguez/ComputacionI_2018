@@ -1,0 +1,40 @@
+1) Descargar de ftp://ftp.gnu.org/gnu/cgicc/ el ftp://ftp.gnu.org/gnu/cgicc/cgicc-3.2.tar.gz
+2) $tar xzf cgicc-X.X.X.tar.gz (en el directorio de cgi-bin)
+3) $cd cgicc-X.X.X/ 
+4) Darle permisos de 755 al directorio de cgicc
+5) Escribir los siguientes comandos
+$./configure --prefix=/usr 
+$make
+$make install
+
+6) Si fallan los siguientes comandos
+Agregar #include <string.h> en el archivo que falle y <memory.h> 
+
+
+
+README for cgicc-example
+========================
+
+This directory contains skeleton code and supporting
+autoconf/automake/libtool infrastructure for a CGI application using
+cgicc.
+
+Assuming that you did a
+ % ./configure
+ % make
+ % make install
+in the top-level cgicc directory and got a working library, you should
+be able to do the same here and get a working executable:
+ % ./configure
+ % make
+
+If you installed cgicc in a non-default place (by specifying the
+--prefix option), you'll need to tell configure where the library is
+using the --with-cgicc option, passing the same value:
+ % ./configure --with-cgicc=PREFIX
+ % make
+
+The 'make install' target is available, but isn't necessary since this
+example doesn't do anything.
+
+
