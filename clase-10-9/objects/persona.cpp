@@ -37,7 +37,7 @@ void Persona::ingresar()
 int Persona::getAnhoNacimiento()
 {
 	int anho_actual = 2018;
-	cout << "Año: " << anho_actual - this->edad;
+	cout << "Año: " << anho_actual - this->edad << "\n";
 
 	return anho_actual - this->edad;
 }

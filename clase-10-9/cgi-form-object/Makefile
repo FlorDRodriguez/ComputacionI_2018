@@ -4,7 +4,7 @@ OBJS =		main.o persona.o fecha.o
 
 LIBS =
 
-TARGET =	cgi
+TARGET =	ejemplo-cgi
 
 $(TARGET):	$(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)

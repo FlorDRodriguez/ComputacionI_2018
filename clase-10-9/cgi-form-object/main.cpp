@@ -13,9 +13,10 @@ int main (int argc, char* const argv[]) {
     Persona persona;
     Fecha fNacimiento;
 
-
 	map<string,string> Post;
 	initializePost(Post);
+
+
 
     if (Post.find("nombre")==Post.end() )
     {
@@ -27,7 +28,7 @@ int main (int argc, char* const argv[]) {
         cout << "</head>" <<endl;
         cout << "<body>   <div class='container'>"<<endl;
         cout<<"<div class='centrar'><h1>Complete los datos</h1></div>"<<endl;
-        cout<<"<form class='form-signin'  method='post'>"<<endl;
+        cout<<"<form class='form-signin' method='post'>"<<endl;
         cout<<"<label for='nombre' class='sr-only'>Nombre</label>"<<endl;
         cout<<"<input type='text' id='nombre' name='nombre' class='form-control' placeholder='Nombre' required autofocus>"<<endl;
         cout<<"<label for='apellido' class='sr-only'>Apellido</label>"<<endl;
@@ -78,7 +79,6 @@ int main (int argc, char* const argv[]) {
         cout<<"</div></div></div></body></html>"<<endl;
 	}
 
-
-
 	return 0;
 }
+
