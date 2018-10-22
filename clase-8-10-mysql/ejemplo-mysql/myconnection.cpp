@@ -33,7 +33,7 @@ void MyConnection::connect()
 {
     string server = "tcp://localhost:3306";
     string user = "root";
-    string password = "kaluli32";
+    string password = "";
     string database = "computacion-mysql";
 
     /* Connect to database */
