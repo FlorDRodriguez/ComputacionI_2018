@@ -15,20 +15,28 @@ int main (int argc, char* const argv[]) {
 
   MyConnection myconnection;
   myconnection.connect();
-  sql::ResultSet* personas = myconnection.query("select persona.nombre as nombre, persona.apellido as apellido from persona");
+  sql::ResultSet* personas = myconnection.query("SELECT persona.nombre, persona.apellido, persona.dni FROM persona");
+  sql::ResultSet* personas_organizaciones = myconnection.query("SELECT persona.nombre as nombre_persona,persona.apellido as apellido_persona,organizacion.nombre  as organizacion_nombre FROM computacion.persona INNER JOIN organizacion ON persona.idorganizacion = organizacion.id Where organizacion.nombre = 'Google'");
 
   cout<<"Content-type: text/html"<<endl<<endl;
   cout<<"<html>"<<endl;
   cout<<"<head>"<<endl;
-  cout<<"<link href='http://localhost/css/bootstrap.min.css' rel='stylesheet'>"<<endl;
-  cout<<"<link href='http://localhost/css/signin.css' rel='stylesheet'>"<<endl;
-  cout<<"<link href='http://localhost/css/ejemplo.css' rel='stylesheet'>"<<endl;
+
+  cout<<"<link href='http://localhost/bootstrap.css' rel='stylesheet'>"<<endl;
   cout<<"</head>"<<endl;
 
   cout<<"<div class='centrar'>"<<endl;
-  cout<<"<h1>Amazon</h1>"<<endl;
+  cout<<"<h3>Todas las Personas con dni</h1>"<<endl;
   while (personas->next()) {
-    cout << personas->getString("nombre") << ", " << personas->getString("apellido") << "<br>" << endl;
+    cout << personas->getString("dni") << ": " << personas->getString("nombre") << ", " << personas->getString("apellido") << "<br>" << endl;
+  }
+
+  cout<<"</div>"<<endl;
+
+  cout<<"<div class='centrar'>"<<endl;
+  cout<<"<h3>Personas que trabajan en Google</h1>"<<endl;
+  while (personas_organizaciones->next()) {
+    cout << personas_organizaciones->getString("nombre_persona") << ": " << personas_organizaciones->getString("apellido_persona") << ", " << personas_organizaciones->getString("organizacion_nombre") << "<br>" << endl;
   }
 
   cout<<"</div>"<<endl;
