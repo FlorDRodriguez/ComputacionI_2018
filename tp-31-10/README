@@ -11,4 +11,11 @@ Descargar la base de datos test.sql
 2. Relaciones entre Personas, Organizaciones, Domicilio
 2.1 Asignar una organizacion a una persona (Machos?)
 2.2 Asignar el domicilio a una persona (ATA)
-2.3 Mostrar todos los datos (de organización y domicilio) en pantalla
+2.3 Mostrar todos los datos (de organización y domicilio) en pantalla (Losdel10)
+
+3. Crear formulario 
+3.1 Permitir la carga de personas (Kari)
+3.2 Permitir la carga de organizaciones (Kari)
+3.3 Permitir la carga de domicilios (Kari)
+
+
