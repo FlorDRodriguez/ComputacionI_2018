@@ -27,12 +27,25 @@ int main (int argc, char* const argv[]) {
     {
         cout<<"Content-type: text/html"<<endl<<endl;
         cout<<"<html><head>"<<endl;
-        cout<<"<link href='http://localhost/css/bootstrap.min.css' rel='stylesheet'>"<<endl;
-        cout<<"<link href='http://localhost/css/signin.css' rel='stylesheet'>"<<endl;
-        cout<<"<link href='http://localhost/css/ejemplo.css' rel='stylesheet'>"<<endl;
+        cout<<"<link href='http://localhost/bootstrap.css' rel='stylesheet'>"<<endl;
         cout << "</head>" <<endl;
         cout << "<body>   <div class='container'>"<<endl;
-        cout<<"<div class='centrar'><h1>Complete los datos</h1></div>"<<endl;
+        cout<<"<div class='centrar'><h2>Personas Cargadas</h2></div>"<<endl;
+
+        cout << "<table class='table table-hover table-bordered  table-striped' cellpadding='0' cellspacing='0'>" << endl;
+        cout << "<thead><tr>" << endl;
+        cout << "<th >DNI</th>"<< endl;
+        cout << "<th >Apellido</th>"<< endl;
+        cout << "<th >Nombre</th>"<< endl;
+        cout << "</tr></thead>" << endl;
+        cout << "<tbody><tr>" << endl;
+         while (personas->next()) {
+          cout << "<td> " << personas->getString("dni") << "</td><td>" << personas->getString("nombre") << "</td><td>" << personas->getString("apellido") << "<td><span class='glyphicon glyphicon-minus' aria-hidden='true'></span></td><td><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></td></tr><tr>" << endl;
+        }
+        cout << "</tr>" << endl;
+        cout << "</tr></tbody>" << endl;
+        cout << "</table>" << endl;
+        cout<<"<div class='centrar'><h2>Agregar Persona</h2></div>"<<endl;
         cout<<"<form class='form-signin'  method='post'>"<<endl;
         cout<<"<label for='nombre' class='sr-only'>Nombre</label>"<<endl;
         cout<<"<input type='text' id='nombre' name='nombre' class='form-control' placeholder='Nombre' required autofocus>"<<endl;
@@ -41,16 +54,6 @@ int main (int argc, char* const argv[]) {
         cout<<"<label for='dni' class='sr-only'>Dni</label>"<<endl;
         cout<<"<input type='text' id='dni' name='dni' class='form-control' placeholder='Dni' required>"<<endl;
         cout<<"<br>"<<endl;
-
-        cout<<"<h3>Fecha de Nacimiento</h3><br>"<<endl;
-        cout<<"<div class='row'>" <<endl;
-        cout<<"<div class='col-md-4'><input type='text' id='dia' name='dia' class='form-control' placeholder='Dia' required>"<<endl;
-        cout<<"</div>"<<endl;
-        cout<<"<div class='col-md-4'><input type='text' id='mes' name='mes' class='form-control' placeholder='Mes' required>"<<endl;
-        cout<<"</div>"<<endl;
-        cout<<"<div class='col-md-4'><input type='text' id='anio' name='anio' class='form-control' placeholder='A&ntilde;o' required>"<<endl;
-        cout<<"</div>"<<endl;
-        cout<<"</div>"<<endl;
 
         cout<<"<br>"<<endl;
         cout<<"<button class='btn btn-lg btn-primary btn-block' type='submit'>Enviar</button>"<<endl;
@@ -73,7 +76,7 @@ int main (int argc, char* const argv[]) {
         persona.setNombre(Post["nombre"]);
         persona.setApellido(Post["apellido"]);
         persona.setDni(atol(Post["dni"].c_str()));
-        persona.mostrar();
+        persona.ingresar();
 
 
         cout<<"</div></div></div></body></html>"<<endl;
