@@ -42,6 +42,10 @@ void Persona::mostrar()
     cout << "<br> Nombre: "<< this->getNombre() << "";
 }
 
+void Persona::eliminar(){
+
+}
+
 void Persona::setDni(long  dni)
 {
     this->dni = dni;
