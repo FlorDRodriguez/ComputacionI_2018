@@ -43,7 +43,14 @@ void Persona::mostrar()
 }
 
 void Persona::eliminar(){
+    long  x;
+    stringstream stringSQL;
 
+    cout << "Coloque el dni de la persona que desea eliminar" << endl;
+    cin >> x;
+
+    stringSQL <<"DELETE FROM `persona` WHERE `dni` = "<<x<<";";
+    //MyConnection::instance()->execute(stringSQL.str());
 }
 
 void Persona::setDni(long  dni)
