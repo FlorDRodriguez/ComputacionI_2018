@@ -16,6 +16,7 @@ class Persona
 
         void ingresar();
         void mostrar();
+        void eliminar();
 
         void setDni(long );
         long  getDni();
