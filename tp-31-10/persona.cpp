@@ -1,5 +1,6 @@
 
 #include "persona.h"
+#include "myconnection.h"
 #include <iostream>
 
 using namespace std;
@@ -21,6 +22,7 @@ Persona::Persona(long dni, string apellido, string nombre)
 
 void Persona::ingresar()
 {
+  string personas;
     long  x;
     string apellido, nombre;
     cout << "Ingrese el dni: ";
@@ -32,6 +34,13 @@ void Persona::ingresar()
     cout << "Ingrese el nombre: ";
     cin >> nombre;
     this->setNombre(nombre);
+
+    MyConnection myconnection;
+    myconnection.connect();
+    //sql::ResultSet* personas = myconnection.query("INSERT INTO persona VALUES ('+x','+apellido','+nombre')");
+    //mysql_query(personas);
+    personas = "INSERT INTO persona (dni,apellido,nombre) VALUES('" + x + "','" + apellido +"','"+ nombre"')" ;
+    mysql_query(personas);
 }
 
 void Persona::mostrar()
