@@ -1,6 +1,5 @@
 
 #include "persona.h"
-#include "myconnection.h"
 #include <iostream>
 #include "myconnection.h"
 
@@ -37,11 +36,16 @@ void Persona::ingresar()
 
     MyConnection myconnection;
     myconnection.connect();
+    stringstream stringSQL;
+
     //sql::ResultSet* personas = myconnection.query("INSERT INTO persona VALUES ('+x','+apellido','+nombre')");
     //mysql_query(personas);
-    personas = "INSERT INTO persona (dni,apellido,nombre) VALUES('" + x + "','" + apellido +"','"+ nombre"')" ;
-    mysql_query(personas);
-}
+//    personas = "INSERT INTO persona (dni,apellido,nombre) VALUES('" + x + "','" + apellido +"','"+ nombre"')" ;
+  //  stringSQL <<"INSERT INTO persona (dni,apellido,nombre) VALUES('" + x + "','" + apellido +"','"+ nombre"')" ;
+    stringSQL<< "INSERT INTO persona (dni,apellido,nombre) VALUES ( x, 'apellido', 'nombre')";
+    myconnection.query(stringSQL.str());
+
+  }
 
 void Persona::mostrar()
 {

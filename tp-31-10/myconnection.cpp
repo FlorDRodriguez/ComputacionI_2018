@@ -33,8 +33,8 @@ void MyConnection::connect()
 {
     string server = "tcp://localhost:3306";
     string user = "root";
-    string password = "6250";
-    string database = "ejemplo_compu1";
+    string password = "root";
+    string database = "computacion";
 
     /* Connect to database */
     sql::Driver* driver = get_driver_instance();
