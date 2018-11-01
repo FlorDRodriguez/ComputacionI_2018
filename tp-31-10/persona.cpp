@@ -1,9 +1,9 @@
 
 #include "persona.h"
 #include <iostream>
+#include "myconnection.h"
 
 using namespace std;
-
 Persona::Persona()
 {
     dni=0;
@@ -42,15 +42,12 @@ void Persona::mostrar()
     cout << "<br> Nombre: "<< this->getNombre() << "";
 }
 
-void Persona::eliminar(){
-    long  x;
+void Persona::eliminar(long x){
+    MyConnection myconnection;
+    myconnection.connect();
     stringstream stringSQL;
-
-    cout << "Coloque el dni de la persona que desea eliminar" << endl;
-    cin >> x;
-
-    stringSQL <<"DELETE FROM `persona` WHERE `dni` = "<<x<<";";
-    //MyConnection::instance()->execute(stringSQL.str());
+    stringSQL <<"DELETE FROM persona WHERE dni = "<< x <<";";
+    myconnection.query(stringSQL.str());
 }
 
 void Persona::setDni(long  dni)
@@ -58,7 +55,7 @@ void Persona::setDni(long  dni)
     this->dni = dni;
 }
 
-long  Persona::getDni()
+long Persona::getDni()
 {
     return this->dni;
 }

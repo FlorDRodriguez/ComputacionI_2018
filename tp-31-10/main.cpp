@@ -40,7 +40,8 @@ int main (int argc, char* const argv[]) {
         cout << "</tr></thead>" << endl;
         cout << "<tbody><tr>" << endl;
          while (personas->next()) {
-          cout << "<td> " << personas->getString("dni") << "</td><td>" << personas->getString("nombre") << "</td><td>" << personas->getString("apellido") << "<td><span class='glyphicon glyphicon-minus' aria-hidden='true'></span></td><td><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></td></tr><tr>" << endl;
+          cout << "<td> " << personas->getString("dni") << "</td><td>" << personas->getString("nombre") << "</td><td>" << personas->getString("apellido") << "<td><a href='eliminar?10000000'" << endl;
+          cout << ">Eliminar</a></td><td><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></td></tr><tr>" << endl;
         }
         cout << "</tr>" << endl;
         cout << "</tr></tbody>" << endl;
