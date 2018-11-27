@@ -28,7 +28,7 @@ void MyConnection::connect() {
     string server = "tcp://localhost:3306";
     string user = "root";
     string password = "root";
-    string database = "computacion";
+    string database = "2Parcial-Computacion";
 
     /* Connect to database */
     sql::Driver* driver = get_driver_instance();

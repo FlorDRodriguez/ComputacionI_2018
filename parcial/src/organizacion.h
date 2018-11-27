@@ -11,21 +11,17 @@ using namespace std;
 class Organizacion {
 private:
 	string nombre;
-	int id;
 public:
 	Organizacion();
-	Organizacion(string, int);
+	Organizacion(string);
 
-	int getId();
-	void setId(int id);
 	string getNombre();
 	void setNombre(string nombre);
 
-	void inicio_org();
-	void listar_org();
-	void alta_org();
-	void baja_org(string);
-	void contar();
+	void agregar();
+	void listar();
+	void eliminar(string);
+	void inicio();
 
 };
 

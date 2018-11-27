@@ -7,20 +7,10 @@ using namespace std;
 
 Organizacion::Organizacion() {
 	nombre = "";
-	id = 0;
 }
 
-Organizacion::Organizacion(string nombre, int id) {
+Organizacion::Organizacion(string nombre) {
 	this->setNombre(nombre);
-	this->setId(id);
-}
-
-int Organizacion::getId() {
-	return id;
-}
-
-void Organizacion::setId(int id) {
-	this->id = id;
 }
 
 string Organizacion::getNombre() {
@@ -31,81 +21,75 @@ void Organizacion::setNombre(string nombre) {
 	this->nombre = nombre;
 }
 
-void Organizacion::inicio_org() {
+void Organizacion::agregar() {
+	string stringSQL;
+	stringstream values;
+	values << this->getNombre();
+	stringSQL = "INSERT INTO organizacion (nombre) VALUES ('"+values.str()+"');";
+	MyConnection::instance()->execute(stringSQL);
+	this->inicio();
+}
+
+void Organizacion::inicio() {
+
 	cout << "<html>" << endl;
 	cout << "<head>" << endl;
 	cout << "<link href='http://localhost/bootstrap.css' rel='stylesheet'>" << endl;
 	cout << "</head>" << endl;
 	cout << "<body>" << endl;
 	cout << "<div class='container'>" << endl;
-
-	cout << "<div class='centrar'> <h2>Organizaciones Cargadas</h2> </div>" << endl;
+	cout << "<br> <br> <br>" << endl;
+	cout << "<div class='centrar'> <h2>Organizaciones</h2> </div>" << endl;
 	cout << "<table class='table table-hover table-bordered  table-striped' cellpadding='0' cellspacing='0'>" << endl;
 	cout << "<thead>" << endl;
 	cout << "<tr>" << endl;
 	cout << "<th> Nombre </th>" << endl;
-	cout << "<th> Cantidad empleados </th>" << endl;
-	cout << "</tr>";
+	cout << "<th> Cant. empleados </th>" << endl;
+	cout << "</tr>" << endl;
 	cout << "</thead>" << endl;
 	cout << "<tbody>" << endl;
 	cout << "<tr>" << endl;
-	this->listar_org();
-	cout << "</tr>" << endl;
-	cout << "<tr>" << endl;
-	this->contar();
-	cout << "</tr>" << endl;
+	this->listar();
+	cout << "</tr>" <<endl;
 	cout << "</tbody>" << endl;
 	cout << "</table>" << endl;
 
-	cout << "<div class='centrar'> <h2>Agregar Organizacion</h2> </div>" << endl;
+    cout << "<div class='centrar'> <h3>Agregar Organizacion</h3> </div>" << endl;
 	cout << "<form class='form-signin' method='post'>" << endl;
-	cout << "<label for='nombre' class='sr-only'> Nombre </label>" << endl;
-	cout << "<input type='text' id='nombre' name='nombre' class='form-control' placeholder='Nombre' required autofocus>" << endl;
+	cout << "<label for='nombre_org' class='sr-only'> Nombre </label>" << endl;
+	cout << "<input type='text' id='nombre_org' name='nombre_org' class='form-control' placeholder='Nombre' required autofocus>" << endl;
 	cout << "<br>" << endl;
 	cout << "<br>" << endl;
 	cout << "<button class='btn btn-lg btn-primary btn-block' type='submit'> Enviar </button>" << endl;
 	cout << "</form>" << endl;
 	cout << "</div>" << endl;
-
 	cout << "</body>" << endl;
 	cout << "</html>" << endl;
 }
 
-void Organizacion::listar_org() {
+void Organizacion::listar() {
 	MyConnection myconnection;
 	myconnection.connect();
-	sql::ResultSet* organizaciones = myconnection.query("SELECT organizacion.nombre FROM organizacion");
+	sql::ResultSet* personasxorg = myconnection.query("SELECT persona.idorganizacion, count(*) as cont, organizacion.id as id, organizacion.nombre as organizacion FROM persona INNER JOIN organizacion ON persona.idorganizacion = organizacion.id group by idorganizacion ORDER BY organizacion.nombre ASC");
 
-	while (organizaciones->next()) {
-		cout << "<td>" << organizaciones->getString("nombre") << "</td>" << endl;
+	while (personasxorg->next()) {
+		cout << "<tr>" << endl;
+		cout << "<td>" << endl;
+		cout << personasxorg->getString("organizacion") << endl;
+		cout << "</td>" << endl;
+		cout << "<td>" << endl;
+		cout << personasxorg->getString("cont") << endl;
+		cout << "</td>" << endl;
+		cout << "<td>" << endl;
+		cout << "<a href='parcial2?eliminarorg=" + personasxorg->getString("id") + "'" << endl;
+		cout << ">Eliminar</a>"<<endl;
+		cout << "</td>" << endl;
+		cout << "</tr>" << endl;
 	}
-
 }
 
-void Organizacion::alta_org() {
-	 string stringSQL;
-	 stringstream values;
-	 values << this->getNombre();
-	 stringSQL = "INSERT INTO organizacion (nombre) VALUES ('"+values.str()+"');";
-	 MyConnection::instance()->execute(stringSQL);
-	 this->inicio_org();
-}
-
-void Organizacion::baja_org(string id) {
+void Organizacion::eliminar(string id) {
 	stringstream stringSQL;
-	stringSQL << "DELETE FROM organizacion WHERE id = " << id << ";";
+	stringSQL <<"DELETE FROM organizacion WHERE id = "<< id <<";";
 	MyConnection::instance()->execute(stringSQL.str());
-}
-
-void Organizacion::contar() {
-	MyConnection myconnection;
-	myconnection.connect();
-	sql::ResultSet* personas_organizaciones = myconnection.query("SELECT COUNT(*) FROM computacion.persona INNER JOIN computacion.organizacion ON persona.idorganizacion = organizacion.id");
-
-	while (personas_organizaciones->next()) {
-		cout << "<td>" << personas_organizaciones->getString("COUNT(persona.nombre)") << "</td>" << endl;
-		cout << "<a href='parcial2?eliminar=" + personas_organizaciones->getString("nombre") + "'" << endl;
-		cout << ">Eliminar</a></tr><tr>" << endl;
-	}
-
 }

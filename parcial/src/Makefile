@@ -10,6 +10,4 @@ $(TARGET):	$(OBJS)
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
 
 all:	$(TARGET)
-
-clean:
-	rm -f $(OBJS) $(TARGET)
+clean: rm -f $(OBJS) $(TARGET)

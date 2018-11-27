@@ -23,11 +23,11 @@ public:
     void setNombre(string);
     string getNombre();
 
-    void inicio_p();
-    void listar_p();
-    void alta_p();
-    void baja_p(string);
+    void agregar();
+    void listar();
+    void eliminar(string);
 
+    void inicio();
 };
 
 #endif // PERSONA_H
