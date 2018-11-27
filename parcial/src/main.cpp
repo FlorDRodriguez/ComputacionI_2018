@@ -20,20 +20,13 @@ int main (int argc, char* const argv[]) {
 
 	cout<<"Content-type: text/html"<<endl<<endl;
 
+	//Persona
 	if (Get.find("eliminar") != Get.end()) {
 		persona.eliminar(Get["eliminar"]);
 	}
 
-	if (Get.find("eliminarorg") != Get.end()) {
-	    org.eliminar(Get["eliminarorg"]);
-	}
-
 	if (Post.find("nombre") == Post.end()) {
-	    (new Persona())->inicio();
-	}
-
-	if(Post.find("nombre_org") == Post.end()) {
-		(new Organizacion())->inicio();
+		(new Persona())->inicio();
 	}
 
 	if (Post.find("nombre")!=Post.end() && Post.find("apellido") != Post.end()) {
@@ -50,6 +43,15 @@ int main (int argc, char* const argv[]) {
 		persona.setDni(atol(Post["dni"].c_str()));
 		persona.agregar();
 		cout<<"</div></div></div></body></html>"<<endl;
+	}
+
+	//Organizacion
+	if (Get.find("eliminarorg") != Get.end()) {
+	    org.eliminar(Get["eliminarorg"]);
+	}
+
+	if(Post.find("nombre_org") == Post.end()) {
+		(new Organizacion())->inicio();
 	}
 
 	if(Post.find("nombre_org") != Post.end()) {
